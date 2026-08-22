@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drivo — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --off:#F6F7FA;
+    --ink:#12151C;
+    --grey:#5C6270;
+    --grey-soft:#8A8F9C;
+    --line:#E3E6EC;
+    --blue:#1D4ED8;
+    --blue-deep:#0E2A63;
+    --blue-tint:#EAF0FE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  section{padding:104px 0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:34px; margin-bottom:16px;}
+  .section-head p{color:var(--grey); font-size:16px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1120px; margin:0 auto; padding:0 32px;
+    height:76px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo-mark{display:flex; align-items:center; gap:10px;}
+  .brand-logo{height:32px; width:auto; display:block;}
+  .logo-mark .icon{
+    width:34px; height:34px; border:1.5px solid var(--ink);
+    border-radius:8px; display:flex; align-items:center; justify-content:center;
+    color:var(--ink); font-size:15px;
+  }
+  .logo-mark .word{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.02em;}
+  .logo-mark .word span{color:var(--blue);}
+  .nav-links{display:flex; gap:30px; font-size:14px; color:var(--grey);}
+  .nav-links a:hover{color:var(--blue);}
+  .status-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.08em;
+    border:1px solid var(--line);
+    padding:6px 12px; border-radius:100px;
+    color:var(--grey); display:flex; align-items:center; gap:7px;
+  }
+  .status-chip .dot{width:6px; height:6px; border-radius:50%; background:var(--blue);}
+  @media (max-width:860px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:96px 0 80px;}
+  .hero .wrap{display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:end;}
+  .hero h1{font-size:56px; line-height:1.06; max-width:620px;}
+  .hero h1 em{color:var(--blue); font-style:normal;}
+  .hero .lede{color:var(--grey); font-size:17px; max-width:460px; margin-top:24px;}
+  .hero-plate{
+    border:1px solid var(--line); border-radius:14px; padding:26px;
+    background:var(--off);
+  }
+  .hero-plate .plate-label{font-size:11px; color:var(--grey-soft); margin-bottom:14px;}
+  .plate-row{display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line); font-size:14px;}
+  .plate-row:first-of-type{border-top:none;}
+  .plate-row .k{color:var(--grey);}
+  .plate-row .v{font-family:'IBM Plex Mono', monospace; font-weight:500; text-align:right;}
+  .credit-line{margin-top:30px; font-size:13px; color:var(--grey-soft);}
+  .credit-line strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- PROBLEM / GRID CARDS ---------- */
+  .cards-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .card{
+    border:1px solid var(--line); border-radius:14px; padding:30px 26px;
+    background:var(--white);
+  }
+  .icon-flat{
+    width:42px; height:42px; border-radius:10px;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--blue); font-size:17px; margin-bottom:20px;
+  }
+  .card h3{font-size:17px; margin-bottom:10px;}
+  .card p{color:var(--grey); font-size:14.5px;}
+
+  .alt{background:var(--off);}
+
+  /* ---------- SOLUTION ---------- */
+  .solution-row{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .solution-copy p{color:var(--grey); font-size:16px; margin-bottom:16px;}
+  .solution-copy p strong{color:var(--ink);}
+  .feature-list li{
+    display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line); font-size:14.5px; color:var(--grey);
+  }
+  .feature-list li:first-child{border-top:none;}
+  .feature-list i{color:var(--blue); margin-top:3px; width:16px;}
+
+  /* ---------- PROCESS ---------- */
+  .process-list{border-top:1px solid var(--line);}
+  .process-item{
+    display:grid; grid-template-columns:70px 1fr; gap:24px;
+    padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .process-item .num{font-family:'IBM Plex Mono', monospace; color:var(--blue); font-size:14px;}
+  .process-item h4{font-size:18px; margin-bottom:6px;}
+  .process-item p{color:var(--grey); font-size:14.5px; max-width:600px;}
+
+  /* ---------- PRODUCT: LOGO ---------- */
+  .logo-showcase{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:80px;
+  }
+  .logo-tile{
+    border:1px solid var(--line); border-radius:14px;
+    padding:44px 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+    text-align:center;
+  }
+  .logo-tile.dark{background:var(--blue-deep); border-color:var(--blue-deep);}
+  .logo-tile.dark .word{color:var(--white);}
+  .logo-tile.dark .icon{border-color:rgba(255,255,255,0.35); color:var(--white);}
+  .logo-tile.blue{background:var(--blue-tint); border-color:var(--blue-tint);}
+  .tile-label{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--grey-soft); letter-spacing:0.08em;}
+  .logo-tile.dark .tile-label{color:rgba(255,255,255,0.55);}
+
+  /* ---------- PRODUCT: GALLERY ---------- */
+  .gallery-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px; gap:24px; flex-wrap:wrap;}
+  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px 22px;}
+  .phone{
+    border:1px solid var(--line); border-radius:22px; padding:10px;
+    background:var(--white);
+  }
+  .phone-screen{
+    border-radius:14px; background:var(--off);
+    aspect-ratio:9/18.5; position:relative; overflow:hidden;
+  }
+  .phone-screen img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .phone-caption{text-align:center; font-size:12px; color:var(--grey); margin-top:12px;}
+  .phone-caption .mono{color:var(--grey-soft); font-size:10px; display:block; margin-top:2px;}
+  .gallery-note{
+    margin-top:26px; font-size:13px; color:var(--grey-soft);
+    border-left:2px solid var(--line); padding-left:14px;
+  }
+
+  /* ---------- MARKET ---------- */
+  .market-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+  .market-copy p{color:var(--grey); font-size:16px; margin-bottom:16px;}
+  .spec-sheet{border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .spec-row{display:flex; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--line); font-size:14px;}
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .k{color:var(--grey);}
+  .spec-row .v{font-family:'IBM Plex Mono', monospace; font-weight:500;}
+
+  /* ---------- BUSINESS MODEL ---------- */
+  .model-flow{display:flex; align-items:center; gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:28px;}
+  .model-step{flex:1; padding:28px 22px; text-align:center;}
+  .model-step + .model-step{border-left:1px solid var(--line);}
+  .model-step .mono{font-size:10.5px; color:var(--grey-soft); margin-bottom:10px; display:block;}
+  .model-step .figure{font-family:'IBM Plex Mono', monospace; font-size:22px; font-weight:500;}
+  .model-step.result .figure{color:var(--blue);}
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .rm-card{border:1px solid var(--line); border-radius:14px; padding:24px;}
+  .rm-card .mono{font-size:10.5px; color:var(--blue); display:block; margin-bottom:10px;}
+  .rm-card h4{font-size:16px; margin-bottom:8px;}
+  .rm-card p{font-size:13.5px; color:var(--grey);}
+
+  /* ---------- TEAM ---------- */
+  .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .team-card{border:1px solid var(--line); border-radius:14px; padding:28px;}
+  .avatar{
+    width:52px; height:52px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; color:var(--blue); font-size:18px; margin-bottom:18px;
+  }
+  .team-card h4{font-size:16px; margin-bottom:4px;}
+  .team-card .role{font-size:12.5px; color:var(--blue); font-family:'IBM Plex Mono', monospace; margin-bottom:12px;}
+  .team-card p{font-size:13.5px; color:var(--grey);}
+
+  /* ---------- ASK ---------- */
+  .ask-wrap{background:var(--blue-deep); border-radius:20px; padding:64px; color:var(--white);}
+  .ask-wrap .eyebrow{color:#8FB0FA;}
+  .ask-wrap .eyebrow::before{background:#8FB0FA;}
+  .ask-wrap h2{color:var(--white); font-size:32px; max-width:600px; margin-bottom:20px;}
+  .ask-wrap p.lede{color:rgba(255,255,255,0.7); max-width:520px; margin-bottom:44px;}
+  .ask-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.14); border-radius:14px; overflow:hidden;}
+  .ask-item{background:var(--blue-deep); padding:26px;}
+  .ask-item .mono{font-size:10.5px; color:rgba(255,255,255,0.5); display:block; margin-bottom:10px;}
+  .ask-item .figure{font-family:'IBM Plex Mono', monospace; font-size:22px;}
+  .ask-item p{font-size:13px; color:rgba(255,255,255,0.6); margin-top:6px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line); padding:56px 0 40px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-note{font-size:13px; color:var(--grey-soft); max-width:460px;}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+    .cards-3{grid-template-columns:1fr;}
+    .solution-row, .market-grid{grid-template-columns:1fr; gap:32px;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .roadmap{grid-template-columns:1fr 1fr;}
+    .team-grid{grid-template-columns:1fr;}
+    .ask-grid{grid-template-columns:1fr;}
+    .ask-wrap{padding:36px;}
+    .model-flow{flex-direction:column;}
+    .model-step + .model-step{border-left:none; border-top:1px solid var(--line);}
+    section{padding:72px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo-mark">
+      <img src="logo.png" alt="Drivo" class="brand-logo">
+    </div>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#product">Product</a>
+      <a href="#market">Market</a>
+      <a href="#model">Model</a>
+      <a href="#team">Team</a>
+      <a href="#ask">Ask</a>
+    </div>
+    <div class="status-chip"><span class="dot"></span>Pre-launch · Concept Stage</div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Pitch Deck</div>
+      <h1>Tanzania's car market, sold through <em>one trusted broker</em>.</h1>
+      <p class="lede">Drivo buys, inspects, and resells vehicles on behalf of owners — one company standing behind every transaction, from valuation to delivery.</p>
+      <div class="credit-line">Prepared by <strong>Wilbert Victor Wilbert</strong> — Founder, BertoTech Solution</div>
+    </div>
+    <div class="hero-plate">
+      <div class="plate-label mono">Concept Overview</div>
+      <div class="plate-row"><span class="k">Model</span><span class="v">Digital Car Brokerage</span></div>
+      <div class="plate-row"><span class="k">Market</span><span class="v">Tanzania → East Africa</span></div>
+      <div class="plate-row"><span class="k">Revenue</span><span class="v">Resale Margin</span></div>
+      <div class="plate-row"><span class="k">Year 1 Target</span><span class="v">50 Vehicles</span></div>
+      <div class="plate-row"><span class="k">Raise</span><span class="v">$10,000 Pre-Seed</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Problem</div>
+      <h2>Buying and selling a car in Tanzania still runs on trust you can't verify.</h2>
+      <p>Most transactions happen through informal networks, with no accountable party standing behind the vehicle, the price, or the payment.</p>
+    </div>
+    <div class="cards-3">
+      <div class="card">
+        <div class="icon-flat"><i class="fa-solid fa-user-shield"></i></div>
+        <h3>No accountable seller</h3>
+        <p>Buyers deal with individual owners or informal agents, with no company standing behind the vehicle's condition or history.</p>
+      </div>
+      <div class="card">
+        <div class="icon-flat"><i class="fa-solid fa-money-bill-transfer"></i></div>
+        <h3>Unsafe payment flow</h3>
+        <p>Money and paperwork often change hands directly between strangers, with no neutral party managing the transaction.</p>
+      </div>
+      <div class="card">
+        <div class="icon-flat"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
+        <h3>Inconsistent pricing</h3>
+        <p>Vehicle valuation is negotiated case-by-case, making it hard for either side to know if a price is fair.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Solution</div>
+      <h2>Drivo is the seller — not just the listing.</h2>
+    </div>
+    <div class="solution-row">
+      <div class="solution-copy">
+        <p>Owners hand their vehicle to Drivo. We inspect it, value it, and take on the sale ourselves — <strong>Drivo becomes the seller of record</strong>, not a middleman connecting two strangers.</p>
+        <p>Buyers pay Drivo directly. There is one accountable company behind every price, every inspection, and every handover.</p>
+      </div>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-check"></i>One company behind every sale — not an anonymous listing</li>
+        <li><i class="fa-solid fa-check"></i>Buyer pays Drivo directly; no informal cash handovers</li>
+        <li><i class="fa-solid fa-check"></i>Pricing and terms are set and controlled by Drivo</li>
+        <li><i class="fa-solid fa-check"></i>Every vehicle inspected before it's listed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How It Works</div>
+      <h2>From owner to buyer, in five steps.</h2>
+    </div>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="num mono">01</div>
+        <div><h4>Acquisition</h4><p>Owner brings their vehicle to Drivo and signs an agreement to sell through the platform.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="num mono">02</div>
+        <div><h4>Valuation</h4><p>A professional inspection sets a fair, verified price for the vehicle.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="num mono">03</div>
+        <div><h4>Listing</h4><p>The vehicle appears on the Drivo app as a Drivo-owned listing, not a third-party post.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="num mono">04</div>
+        <div><h4>Sale</h4><p>Buyer selects the vehicle and pays Drivo directly through the app.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="num mono">05</div>
+        <div><h4>Delivery</h4><p>Drivo coordinates handover and paperwork with the buyer.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT: LOGO + GALLERY -->
+<section id="product">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Product</div>
+      <h2>Inside the Drivo app.</h2>
+      <p>A first look at the core screens buyers and sellers will use once Drivo goes live.</p>
+    </div>
+
+    <div class="gallery-head">
+      <div>
+        <div class="eyebrow">App Gallery</div>
+        <h3 style="font-size:22px;">Core screens</h3>
+      </div>
+      <p style="color:var(--grey); font-size:13.5px; max-width:340px;">Layout reference for the Drivo app — replace each frame below with the corresponding screenshot from the current build.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="one.jpg" alt="Drivo app — logo screen"></div></div>
+        <div class="phone-caption">Logo Screen<span class="mono">SCREEN — 01</span></div>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="two.jpg" alt="Drivo app — splash screen"></div></div>
+        <div class="phone-caption">Splash Screen<span class="mono">SCREEN — 02</span></div>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="three.jpg" alt="Drivo app — home screen"></div></div>
+        <div class="phone-caption">Home Screen<span class="mono">SCREEN — 03</span></div>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="four.jpg" alt="Drivo app — vehicle detail view"></div></div>
+        <div class="phone-caption">Vehicle Detail<span class="mono">SCREEN — 04</span></div>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="five.jpg" alt="Drivo app — post a vehicle form"></div></div>
+        <div class="phone-caption">Post a Vehicle<span class="mono">SCREEN — 05</span></div>
+      </div>
+      <div>
+        <div class="phone"><div class="phone-screen"><img src="six.jpg" alt="Drivo app — search and filter"></div></div>
+        <div class="phone-caption">Search &amp; Filter<span class="mono">SCREEN — 06</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market" class="alt">
+  <div class="wrap">
+    <div class="market-grid">
+      <div>
+        <div class="eyebrow">Market Opportunity</div>
+        <h2 style="font-size:30px; margin-bottom:20px;">A large, fragmented market with no dominant trusted brand.</h2>
+        <div class="market-copy">
+          <p>Vehicle ownership in Tanzania is expanding alongside a growing middle class and rising smartphone use, yet no single company has become the trusted name for buying or selling a used car.</p>
+          <p>Existing options are split between informal dealer yards and unmoderated classifieds — leaving space for a brokerage that owns the full transaction.</p>
+        </div>
+      </div>
+      <div class="spec-sheet">
+        <div class="spec-row"><span class="k">Primary Market</span><span class="v">Dar es Salaam, TZ</span></div>
+        <div class="spec-row"><span class="k">Expansion Market</span><span class="v">East Africa</span></div>
+        <div class="spec-row"><span class="k">Segment</span><span class="v">Used Passenger Vehicles</span></div>
+        <div class="spec-row"><span class="k">Current State</span><span class="v">Fragmented, Informal</span></div>
+        <div class="spec-row"><span class="k">Distribution</span><span class="v">Mobile App</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="model">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Business Model</div>
+      <h2>Revenue comes from the resale margin.</h2>
+      <p>Drivo acquires a vehicle at an assessed value, then sells it at a margin that covers inspection, listing, and handling.</p>
+    </div>
+    <div class="model-flow">
+      <div class="model-step">
+        <span class="mono">Acquired At</span>
+        <div class="figure">TZS 10,000,000</div>
+      </div>
+      <div class="model-step">
+        <span class="mono">Listed At</span>
+        <div class="figure">TZS 12,000,000</div>
+      </div>
+      <div class="model-step result">
+        <span class="mono">Drivo Margin</span>
+        <div class="figure">TZS 2,000,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Year One Roadmap</div>
+      <h2>Targets, not traction.</h2>
+      <p>Drivo has not yet launched. These are the milestones the pre-seed raise is intended to reach.</p>
+    </div>
+    <div class="roadmap">
+      <div class="rm-card">
+        <span class="mono">Q1</span>
+        <h4>Build & Inspect</h4>
+        <p>Finalize app, set inspection standards, onboard first vehicle owners.</p>
+      </div>
+      <div class="rm-card">
+        <span class="mono">Q2</span>
+        <h4>First Listings</h4>
+        <p>Launch with an initial batch of inspected vehicles in Dar es Salaam.</p>
+      </div>
+      <div class="rm-card">
+        <span class="mono">Q3</span>
+        <h4>Scale Acquisition</h4>
+        <p>Grow toward 50 vehicles processed through the platform.</p>
+      </div>
+      <div class="rm-card">
+        <span class="mono">Q4</span>
+        <h4>Review & Expand</h4>
+        <p>Assess unit economics and plan expansion beyond Dar es Salaam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Team</div>
+      <h2>Founder-led, built to grow.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar"><i class="fa-solid fa-user"></i></div>
+        <h4>Wilbert Victor Wilbert</h4>
+        <div class="role mono">Founder</div>
+        <p>Developer and founder of BertoTech Solution, leading product, engineering, and brand for Drivo.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar"><i class="fa-solid fa-code"></i></div>
+        <h4>Development</h4>
+        <div class="role mono">In Progress</div>
+        <p>App and platform built in-house under BertoTech Solution.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar"><i class="fa-solid fa-car"></i></div>
+        <h4>Automotive Advisory</h4>
+        <div class="role mono">To Be Onboarded</div>
+        <p>Inspection and valuation expertise to be brought on as the network of vehicles grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASK -->
+<section id="ask" class="alt">
+  <div class="wrap">
+    <div class="ask-wrap">
+      <div class="eyebrow">The Ask</div>
+      <h2>$10,000 pre-seed to bring Drivo to market.</h2>
+      <p class="lede">Funds cover the final build, first-vehicle acquisition capital, and initial marketing to launch in Dar es Salaam.</p>
+      <div class="ask-grid">
+        <div class="ask-item">
+          <span class="mono">Product</span>
+          <div class="figure">40%</div>
+          <p>App finalization & inspection tooling</p>
+        </div>
+        <div class="ask-item">
+          <span class="mono">Acquisition</span>
+          <div class="figure">40%</div>
+          <p>Capital for first vehicles</p>
+        </div>
+        <div class="ask-item">
+          <span class="mono">Marketing</span>
+          <div class="figure">20%</div>
+          <p>Launch campaign in Dar es Salaam</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo-mark">
+      <img src="logo.png" alt="Drivo" class="brand-logo">
+    </div>
+    <div class="footer-note">Drivo is a concept-stage venture prepared by Wilbert Victor Wilbert, BertoTech Solution. Not yet operating in market — this document is presented for pre-seed discussion purposes.</div>
+  </div>
+</footer>
+
+</body>
+</html>
